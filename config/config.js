@@ -14,4 +14,4 @@ process.env.NODE_ENV = process.env.NODE_ENV ||  'dev';
 *   database 
 */
 
-process.env.MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost/cafe';
+process.env.DATABASE = process.env.DATABASE || 'mongodb://localhost/cafe';
