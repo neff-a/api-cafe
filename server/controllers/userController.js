@@ -18,7 +18,6 @@ const User = require('../models/user');
 
         user.save((err, user) => {
             if (err) {
-                console.log(err)
                 res.status(400).json({
                     code: 400,
                     message: 'error on save',
@@ -59,8 +58,6 @@ const User = require('../models/user');
     });
 
     app.get('/users', validateToken, function (req, res) {
-
-        console.log(JSON.stringify(req.user_session));
         
         const from = Number(req.query.from) || 0;
         const limit = Number(req.query.limit) || 10;
