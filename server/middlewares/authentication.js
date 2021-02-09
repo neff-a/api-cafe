@@ -15,7 +15,7 @@ const validateToken = (request, response, next) => {
 
     let token  = tokenRequest.slice(7)
 
-    jwt.verify(token, process.env.SECRET_TOKEN, (error, userInfo) => {
+    jwt.verify(token, process.env.SECRET_TOKEN, (error, jwtData) => {
 
         if (error) {
             return response.status(401)
@@ -25,7 +25,7 @@ const validateToken = (request, response, next) => {
                 })
         
         }
-        request.userInfo = userInfo;
+        request.user_session = jwtData.user;
         next();
     });
 
