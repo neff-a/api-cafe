@@ -10,7 +10,7 @@ app.post('/login', function(request, response) {
 
     let userRequest = request.body;
 
-    User.findOne({ email: userRequest.email }, (error, userDB) => {
+    User.findOne({ email: userRequest.email, status: 'ACT' }, (error, userDB) => {
 
         if(error) {
             return response.status(500).json({
