@@ -36,7 +36,7 @@ app.post('/login', function(request, response) {
             })
         }
 
-        let userResponse = _.pick(userDB, ['name', 'email', 'status']);
+        let userResponse = _.pick(userDB, ['name', 'email', 'role']);
 
         let token = jwt.sign({
             user: userResponse
