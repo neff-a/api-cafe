@@ -1,5 +1,7 @@
+
 const express = require('express');
 const app = express();
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const User = require('../models/user');
@@ -34,9 +36,14 @@ app.post('/login', function(request, response) {
             })
         }
 
+        let userResponse = _.pick(userDB, ['name', 'email', 'status']);
+
+        let token = jwt.sign({
+            user: userResponse
+          }, process.env.SECRET_TOKEN, { expiresIn: process.env.EXPIRATION_TOKEN });
+
         return response.json({
-            user: userDB,
-            token: 'xxx-xxx-xxx'
+            token
         })
     });
 

@@ -15,3 +15,18 @@ process.env.NODE_ENV = process.env.NODE_ENV ||  'dev';
 */
 
 process.env.DATABASE = process.env.DATABASE || 'mongodb://localhost/cafe';
+
+
+/*
+*   expiration token
+*/
+
+process.env.EXPIRATION_TOKEN = process.env.EXPIRATION_TOKEN || '1h';
+
+
+
+/*
+*   secret token
+*/
+
+process.env.SECRET_TOKEN = process.env.SECRET_TOKEN || 'secret-dev-environment';

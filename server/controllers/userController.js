@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
+const { validateToken } = require('../middlewares/authentication')
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const User = require('../models/user');
   
-    app.post('/users', function (req, res) {
+    app.post('/users', validateToken, function (req, res) {
         
         const request  = req.body;
         
@@ -32,7 +33,7 @@ const User = require('../models/user');
         });
     })
     
-    app.put('/users/:id', function (req, res) {
+    app.put('/users/:id', validateToken, function (req, res) {
         
         const userId = req.params.id;
         const userRequest  = _.pick( req.body, ['name', 'email', 'role']);
@@ -57,7 +58,7 @@ const User = require('../models/user');
         });
     });
 
-    app.get('/users', function (req, res) {
+    app.get('/users', validateToken, function (req, res) {
         
         const from = Number(req.query.from) || 0;
         const limit = Number(req.query.limit) || 10;
@@ -96,7 +97,7 @@ const User = require('../models/user');
             });
     });
 
-    app.delete('/users/:id', function (req, res) {
+    app.delete('/users/:id', validateToken ,function (req, res) {
         
         const userId = req.params.id;
         const userRequest  = _.pick( req.body, ['status']);
