@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // api
-app.use(require('./controllers/userController'))
+app.use(require('./controllers/indexController'))
 
  // mongose 
 
