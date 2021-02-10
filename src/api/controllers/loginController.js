@@ -4,7 +4,7 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
-const User = require('../models/user');
+const User = require('../../models/user');
 const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client(process.env.CLIENT_ID);
 

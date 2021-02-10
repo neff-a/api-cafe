@@ -3,33 +3,24 @@ const app = express();
 const { validateToken, validateAdminRole } = require('../middlewares/authentication')
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
-const User = require('../models/user');
-  
-    app.post('/users', [validateToken, validateAdminRole ], function (req, res) {
-        
-        const request  = req.body;
-        
-        let user = new User({
-            name: request.name,
-            email: request.email,
-            password: bcrypt.hashSync(request.password, 10),
-            role: request.role
-        });
+const User = require('../../models/user');
+const UserService = require('../../services/UserService');
 
-        user.save((err, user) => {
-            if (err) {
-                res.status(400).json({
-                    code: 400,
-                    message: 'error on save',
-                    error: err
-                })
-                return;
-            }
-            
-            res.json({
-                user
-            })
-        });
+    const userService = new UserService();
+  
+    app.post('/users', [validateToken, validateAdminRole ], async(request, response) => {
+        const userRequest  = request.body;
+        try {
+            let userDB = await userService.save(userRequest);
+            return response.json({
+                user: userDB
+            });
+        } catch(error) {
+            return response.status(400).json({
+                code: 'user_save',
+                stack_trace: error
+            });
+        }
     })
     
     app.put('/users/:id', [validateToken, validateAdminRole], function (req, res) {
