@@ -30,3 +30,9 @@ process.env.EXPIRATION_TOKEN = process.env.EXPIRATION_TOKEN || '1h';
 */
 
 process.env.SECRET_TOKEN = process.env.SECRET_TOKEN || 'secret-dev-environment';
+
+/*
+* CLIENT ID
+*/
+
+process.env.CLIENT_ID = process.env.CLIENT_ID || 'google-client-id';

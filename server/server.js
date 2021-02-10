@@ -3,6 +3,7 @@ require('../config/config')
 const mongoose = require('mongoose');
 const express = require('express')
 const app = express()
+const path = require('path')
 
 const bodyParser = require('body-parser')
 
@@ -10,7 +11,10 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
  
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+// static page
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 // api
 app.use(require('./controllers/indexController'))
